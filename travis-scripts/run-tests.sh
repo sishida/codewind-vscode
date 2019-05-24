@@ -1,17 +1,11 @@
 #!/usr/bin/env bash
 
-skip_microclimate_install="$1"
-
 if [[ "$skip_tests" != "true" ]]; then
     set -x
 
     # Working directory must be dev/ (since this is where package.json is for npm test)
     # Make sure to cd - before exiting
     cd "$(dirname $0)/../dev"
-
-    if [[ "$skip_microclimate_install" != "true" ]]; then
-        sudo -E ../travis-scripts/install-microclimate.sh
-    fi
 
     if [[ -z "$CODE_TESTS_WORKSPACE" ]]; then
         export CODE_TESTS_WORKSPACE="${HOME}/microclimate-workspace/"
